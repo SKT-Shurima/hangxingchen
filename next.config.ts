@@ -1,21 +1,24 @@
 import type { NextConfig } from 'next'
 import createMDX from '@next/mdx'
 
+// Declare the process variable to fix TypeScript error
+declare const process: {
+  env: {
+    NEXT_PUBLIC_BASE_PATH?: string;
+    [key: string]: string | undefined;
+  };
+};
+
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx', 'js', 'jsx'],
   output: 'export',
-  distDir: 'out',
+  distDir: 'dist',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   images: {
     unoptimized: true,
     remotePatterns: [
-      {
-        hostname: 'cdn.sanity.io',
-      },
-      {
-        hostname: 'mp.weixin.qq.com',
-      },
     ],
+    path: '',
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -23,6 +26,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
 }
 
 const withMDX = createMDX({

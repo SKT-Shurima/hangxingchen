@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片加载测试</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .image-container {
+        margin: 20px 0;
+      }
+      img {
+        max-width: 100%;
+        border: 1px solid #ccc;
+      }
+      h2 {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>图片加载测试</h1>
+
+    <h2>1. 直接引用 _next/static/media 中的图片</h2>
+    <div class="image-container">
+      <img src="_next/static/media/logo.ff0b098c.jpg" alt="Logo" />
+      <p>路径: _next/static/media/logo.ff0b098c.jpg</p>
+    </div>
+
+    <h2>2. 使用相对路径引用 dist/_next/static/media 中的图片</h2>
+    <div class="image-container">
+      <img src="dist/_next/static/media/logo.ff0b098c.jpg" alt="Logo" />
+      <p>路径: dist/_next/static/media/logo.ff0b098c.jpg</p>
+    </div>
+
+    <h2>3. 使用绝对路径引用图片</h2>
+    <div class="image-container">
+      <img src="/dist/_next/static/media/logo.ff0b098c.jpg" alt="Logo" />
+      <p>路径: /dist/_next/static/media/logo.ff0b098c.jpg</p>
+    </div>
+
+    <h2>4. 使用 public 目录中的图片</h2>
+    <div class="image-container">
+      <img src="public/favicon.ico" alt="Favicon" />
+      <p>路径: public/favicon.ico</p>
+    </div>
+
+    <h2>5. 使用构建后的 dist 目录中的图片</h2>
+    <div class="image-container">
+      <img src="dist/favicon.ico" alt="Favicon" />
+      <p>路径: dist/favicon.ico</p>
+    </div>
+  </body>
+</html>
