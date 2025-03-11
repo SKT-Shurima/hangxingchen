@@ -9,11 +9,13 @@ on:
 
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
-  actions: write
   deployments: write
+  statuses: write
+  actions: write
+  packages: read
 
 # 只允许一个并发部署，跳过正在运行和最新队列之间的运行队列
 # 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
@@ -69,8 +71,9 @@ jobs:
       - name: Build with Next.js
         run: |
           echo "Starting Next.js build process..."
-          NODE_OPTIONS="--max_old_space_size=4096" NEXT_OUTPUT=export pnpm build
+          NODE_OPTIONS="--max_old_space_size=4096" pnpm build
           echo "Build process completed with exit code: $?"
+
           echo "Checking if build generated expected directories..."
           if [ -d "out" ]; then 
             echo "out directory created successfully!"
@@ -81,20 +84,62 @@ jobs:
         env:
           # 添加 Next.js 的输出配置，确保生成静态文件
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-          NEXT_OUTPUT: 'export'
 
-      - name: Debug - List directories and files
+      - name: Debug - Project Structure and Configuration
         run: |
-          echo "Current directory: $(pwd)"
-          ls -la
-          echo "Checking Next.js version:"
-          grep -A 1 "\"next\":" package.json || echo "Next.js version not found in package.json"
-          echo "Checking Next.js configuration:"
-          if [ -f "next.config.js" ]; then cat next.config.js; elif [ -f "next.config.ts" ]; then cat next.config.ts; else echo "Next.js config file not found"; fi
-          echo "Listing out directory contents (if exists):"
-          if [ -d "out" ]; then ls -la out; else echo "out directory does not exist"; fi
-          echo "Checking package.json build script:"
-          grep -A 5 "\"build\"" package.json || echo "Build script not found in package.json"
+          echo "============= Project Structure ============="
+          echo "Current working directory: $(pwd)"
+          echo "Directory structure:"
+          tree -L 2 || (echo "Installing tree..." && apt-get update && apt-get install -y tree && tree -L 2)
+
+          echo "\n============= Package Information ============="
+          echo "Node version: $(node -v)"
+          echo "PNPM version: $(pnpm -v)"
+          echo "Next.js version from package.json:"
+          grep -A 1 "\"next\":" package.json || echo "Next.js version not found"
+
+          echo "\n============= Build Configuration ============="
+          echo "Next.js configuration:"
+          if [ -f "next.config.js" ]; then
+            echo "Content of next.config.js:"
+            cat next.config.js
+          elif [ -f "next.config.ts" ]; then
+            echo "Content of next.config.ts:"
+            cat next.config.ts
+          else
+            echo "Next.js config file not found"
+          fi
+
+          echo "\n============= Build Output ============="
+          echo "Checking out directory:"
+          if [ -d "out" ]; then
+            echo "out directory exists with the following contents:"
+            ls -la out
+            echo "\nDetailed out structure:"
+            tree out || ls -R out
+          else
+            echo "out directory does not exist"
+          fi
+
+          echo "\n============= Build Scripts ============="
+          echo "Build scripts from package.json:"
+          grep -A 5 "\"build\"" package.json || echo "Build script not found"
+
+      - name: Verify Build Output
+        run: |
+          echo "Verifying build output..."
+          if [ -d "out" ]; then
+            echo "✅ out directory exists"
+            echo "Directory structure:"
+            tree out || ls -R out
+            echo "\nTotal files in out: $(find out -type f | wc -l)"
+            echo "Total size of out: $(du -sh out | cut -f1)"
+          else
+            echo "❌ ERROR: out directory not found"
+            echo "Current directory contents:"
+            ls -la
+            exit 1
+          fi
 
       - name: Try manual export
         run: |
@@ -104,15 +149,6 @@ jobs:
             echo "out directory already exists, skipping export"
             ls -la out
             exit 0
-          fi
-
-          # 尝试使用export脚本
-          if grep -q "\"export\"" package.json; then
-            echo "Running pnpm export..."
-            pnpm export || echo "Export command failed with exit code $?"
-          else
-            echo "No export script found in package.json, trying next export..."
-            npx next export || echo "Next export command failed with exit code $?"
           fi
 
           # 检查是否生成了out目录

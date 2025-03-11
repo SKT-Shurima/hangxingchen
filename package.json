@@ -3,7 +3,6 @@
   "packageManager": "pnpm@10.5.2",
   "scripts": {
     "build": "next build",
-    "export": "next export",
     "dev": "next dev --port 3333 --turbo",
     "format": "npx prettier --write . --ignore-path .gitignore",
     "lint": "next lint --ignore-path .gitignore",
