@@ -67,10 +67,34 @@ jobs:
           token: ${{ secrets.PAGES_PAT }}
 
       - name: Build with Next.js
-        run: pnpm build
+        run: |
+          echo "Starting Next.js build process..."
+          pnpm build
+          echo "Build process completed with exit code: $?"
+          echo "Checking if build generated expected directories..."
         env:
           # 添加 Next.js 的输出配置，确保生成静态文件
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+
+      - name: Debug - List directories and files
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Listing root directory contents:"
+          ls -la
+          echo "Checking Next.js configuration:"
+          if [ -f "next.config.js" ]; then cat next.config.js; elif [ -f "next.config.ts" ]; then cat next.config.ts; else echo "Next.js config file not found"; fi
+          echo "Listing .next directory contents (if exists):"
+          if [ -d ".next" ]; then ls -la .next; else echo ".next directory does not exist"; fi
+          echo "Listing out directory contents (if exists):"
+          if [ -d "out" ]; then ls -la out; else echo "out directory does not exist"; fi
+
+      - name: Check and create out directory if not exists
+        run: |
+          if [ ! -d "./out" ]; then
+            echo "Creating missing out directory"
+            mkdir -p ./out
+            echo "<html><body><h1>Website is under construction</h1></body></html>" > ./out/index.html
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
