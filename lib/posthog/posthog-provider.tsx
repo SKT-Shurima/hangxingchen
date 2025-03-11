@@ -34,6 +34,6 @@ export function PostHogPageview() {
 
 export function PHProvider({ children }: { children: React.ReactNode }) {
   // Use useMemo to prevent creating a new object on every render
-  const memoizedClient = useMemo(() => posthog, []);
+  const memoizedClient = useMemo(() => posthog, [])
   return <PostHogProvider client={memoizedClient}>{children}</PostHogProvider>
 }
