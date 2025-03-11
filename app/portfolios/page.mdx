@@ -1,0 +1,71 @@
+import { Hr } from '~/components/ui/hr'
+import { Portfolios } from '~/modules/portfolios'
+import Image from 'next/image'
+import { getOpenGraphImage } from '~/lib/helper'
+
+export const metadata = {
+  title: '活动',
+  description: '杭星辰车友社区的精彩活动记录和照片分享。',
+  openGraph: {
+    title: '活动',
+    description: '杭星辰车友社区的精彩活动记录和照片分享。',
+    images: [getOpenGraphImage('活动', 'zh-CN')],
+  },
+}
+
+# 往期活动：一起回顾我们<Gradient>精彩纷呈</Gradient>的聚会
+
+欢迎来到我们的活动回顾页面，这里展示了我们曾经组织的<Gradient>丰富多彩的聚会活动</Gradient>。我们的团队成员来自各行各业，大家在繁忙的工作之余，一起参与各种有趣的活动，增进友谊，放松身心。我们对这些美好的回忆感到无比珍视，也很高兴能够和大家一起分享。<br></br><br></br>我们深信，优质的团队活动<b>不仅仅是简单的聚会</b>，更是通过<Green>精心的组织和丰富的内容让每位参与者感到愉悦</Green>。这就是为什么我们举办的每次活动都经过精心策划 - 因为<Red>美好的细节才能创造难忘的回忆</Red>。我们根据季节和成员喜好，组织各种室内外活动，让每位成员都能找到自己喜欢的参与方式。以下是我们的部分活动记录，期待未来能有更多精彩瞬间与大家分享。
+
+<Hr className='my-12' />
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+  <div className="rounded-xl overflow-hidden shadow-lg">
+    <div className="h-48 bg-green-600 flex items-center justify-center">
+      <span className="text-white text-2xl font-bold">露营活动照片</span>
+    </div>
+    <div className="p-4">
+      <h3 className="text-xl font-bold mb-2">春季野外露营</h3>
+      <p>在美丽的山林间，我们举办了为期两天的露营活动。大家一起搭帐篷、烹饪美食、围坐篝火，分享故事，欣赏星空，度过了难忘的时光。</p>
+      <p className="mt-2 text-sm text-gray-600">2023年4月</p>
+    </div>
+  </div>
+  
+  <div className="rounded-xl overflow-hidden shadow-lg">
+    <div className="h-48 bg-red-600 flex items-center justify-center">
+      <span className="text-white text-2xl font-bold">烧烤活动照片</span>
+    </div>
+    <div className="p-4">
+      <h3 className="text-xl font-bold mb-2">夏日海滩烧烤</h3>
+      <p>炎炎夏日，我们在海边举办了一场盛大的烧烤派对。美食、游戏、海水浴，每个人都尽情享受着夏日的欢乐和团队的温暖。</p>
+      <p className="mt-2 text-sm text-gray-600">2023年7月</p>
+    </div>
+  </div>
+  
+  <div className="rounded-xl overflow-hidden shadow-lg">
+    <div className="h-48 bg-blue-600 flex items-center justify-center">
+      <span className="text-white text-2xl font-bold">羽毛球活动照片</span>
+    </div>
+    <div className="p-4">
+      <h3 className="text-xl font-bold mb-2">室内羽毛球赛</h3>
+      <p>为了增强团队凝聚力和身体素质，我们定期组织羽毛球比赛。友谊第一，比赛第二，大家在运动中释放压力，增进友谊。</p>
+      <p className="mt-2 text-sm text-gray-600">每月活动</p>
+    </div>
+  </div>
+  
+  <div className="rounded-xl overflow-hidden shadow-lg">
+    <div className="h-48 bg-purple-600 flex items-center justify-center">
+      <span className="text-white text-2xl font-bold">团建活动照片</span>
+    </div>
+    <div className="p-4">
+      <h3 className="text-xl font-bold mb-2">年度团建旅行</h3>
+      <p>每年我们都会组织一次远途旅行，探索不同的城市和自然风光。这是我们放松身心、增进了解的重要时刻，也创造了许多珍贵的回忆。</p>
+      <p className="mt-2 text-sm text-gray-600">2023年10月</p>
+    </div>
+  </div>
+</div>
+
+<div className="text-center my-8">
+  <h2 className="text-2xl font-bold mb-4">期待您的参与</h2>
+  <p>我们的活动向所有成员开放，欢迎加入我们的下一次聚会！关注我们的通知，不要错过任何精彩活动。</p>
+</div> 

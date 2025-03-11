@@ -1,6 +1,5 @@
 import type { NextRequest } from 'next/server'
 import { ImageResponse } from '@vercel/og'
-import { routing } from '~/modules/i18n/routing'
 
 export const config = {
   runtime: 'edge',
@@ -14,12 +13,8 @@ export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl
   const title = searchParams.get('title') ?? ''
   const subtitle = searchParams.get('subtitle') ?? ''
-  const locale = searchParams.get('locale') ?? 'zh-CN'
-  let fontData: ArrayBuffer
-  switch (locale) {
-    default:
-      fontData = await enFont
-  }
+  const locale = 'zh-CN'
+  const fontData = await enFont
 
   return new ImageResponse(
     (
@@ -56,7 +51,7 @@ export default async function handler(req: NextRequest) {
         <div
           style={{
             marginLeft: 50,
-            paddingRight: locale === routing.defaultLocale ? 220 : 200,
+            paddingRight: 220,
             display: 'flex',
             fontSize: 78,
             fontFamily: 'Zolplay',

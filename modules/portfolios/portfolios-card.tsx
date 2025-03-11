@@ -1,20 +1,17 @@
 'use client'
 
 import type { Portfolio } from './datasource'
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { TbArrowBadgeRight, TbArrowUpRight } from 'react-icons/tb'
 import Balancer from 'react-wrap-balancer'
-import { LocaleLink } from '~/modules/i18n/navigation'
 
 function makePortfolioLink(portfolio: Portfolio) {
   return `/portfolios/${portfolio.slug}`
 }
 
-export function PortfolioCard({ portfolio, locale }: { portfolio: Portfolio; locale: string }) {
-  const t = useTranslations('Portfolios.Card')
+export function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
   const palette = portfolio.palette
 
   return (
@@ -35,18 +32,18 @@ export function PortfolioCard({ portfolio, locale }: { portfolio: Portfolio; loc
               alt='Logo'
             />
 
-            <span className='text-xs font-bold opacity-60'>{portfolio.timeframe[locale]}</span>
+            <span className='text-xs font-bold opacity-60'>{portfolio.timeframe}</span>
           </div>
           <h2 className='mt-4'>
-            <LocaleLink
+            <Link
               href={makePortfolioLink(portfolio)}
               className='not-prose text-lg md:text-xl lg:text-2xl hover:underline'
               style={{
                 color: palette.foreground,
               }}
             >
-              <Balancer>{portfolio.title[locale]}</Balancer>
-            </LocaleLink>
+              <Balancer>{portfolio.title}</Balancer>
+            </Link>
           </h2>
           <p
             className='pr-5 text-sm !leading-relaxed opacity-70 md:pr-0 lg:text-sm'
@@ -54,7 +51,7 @@ export function PortfolioCard({ portfolio, locale }: { portfolio: Portfolio; loc
               color: palette.foreground,
             }}
           >
-            {portfolio.description[locale]}
+            {portfolio.description}
           </p>
 
           <div
@@ -63,20 +60,20 @@ export function PortfolioCard({ portfolio, locale }: { portfolio: Portfolio; loc
               color: palette.foreground,
             }}
           >
-            {/* <LocaleLink
+            {/* <Link
               href={makePortfolioLink(portfolio)}
               className='flex items-center font-bold text-current no-underline hover:underline'
             >
-              <span>{t('LearnMoreCTA')}</span>
+              <span>了解更多</span>
               <TbArrowBadgeRight className='size-4' />
-            </LocaleLink> */}
+            </Link> */}
             {portfolio.website && (
               <Link
                 href={portfolio.website}
                 target='_blank'
                 className='flex items-center font-bold text-current no-underline hover:underline'
               >
-                <span>{t('VisitCTA')}</span>
+                <span>访问网站</span>
                 <TbArrowUpRight className='size-4' />
               </Link>
             )}
@@ -86,7 +83,7 @@ export function PortfolioCard({ portfolio, locale }: { portfolio: Portfolio; loc
           <Image
             className='pointer-events-none m-0 mx-auto h-full w-auto select-none rounded-none p-0'
             src={portfolio.image}
-            alt={portfolio.title[locale]}
+            alt={portfolio.title}
             placeholder={portfolio.image.src.includes('gif') ? undefined : 'blur'}
           />
           <div className='mask-l frosted-noise pointer-events-none absolute inset-y-0 left-0 z-10 w-full select-none md:w-[200px]' />

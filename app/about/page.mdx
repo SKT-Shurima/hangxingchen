@@ -1,0 +1,149 @@
+import Balancer from 'react-wrap-balancer'
+import { Players } from '~/components/players'
+import { getOpenGraphImage } from '~/lib/helper'
+import { Carousel } from '~/components/ui/carousel'
+import { Button } from '~/components/ui/button'
+import { Hr } from '~/components/ui/hr'
+import Image from 'next/image'
+import Link from 'next/link'
+import teamPhoto1 from '~/public/team/team1.jpg'
+import teamPhoto2 from '~/public/team/team2.jpg'
+import teamPhoto3 from '~/public/team/team3.jpg'
+import owner1 from '~/public/owners/owner1.jpg'
+
+export const metadata = {
+  title: '关于我们',
+  description: '杭星辰是杭州地区的星瑞车主社区，我们致力于为车主提供交流、分享和互助的平台。',
+  openGraph: {
+    title: '关于我们',
+    description: '杭星辰是杭州地区的星瑞车主社区，我们致力于为车主提供交流、分享和互助的平台。',
+    images: [getOpenGraphImage('关于我们', 'zh-CN')],
+  },
+}
+
+<div className="text-center mb-12">
+  <AnimatedText animation="fade">
+    <h1><Gradient>欢迎加入杭星辰</Gradient></h1>
+  </AnimatedText>
+  <div className="mt-4 text-xl text-stone-600 dark:text-stone-400 italic">
+    <AnimatedText animation="slide">
+      我们是<Gradient>杭州星瑞车主之家</Gradient>
+    </AnimatedText>
+  </div>
+</div>
+
+<div className="flex flex-col justify-center items-center mb-12">
+  <div className="w-full max-w-[700px] h-[400px]">
+    <Carousel 
+      images={[
+        { src: teamPhoto1, alt: '杭星辰团队照片1', color: '#f5a623' },
+        { src: teamPhoto2, alt: '杭星辰团队照片2', color: '#3b82f6' },
+        { src: teamPhoto3, alt: '杭星辰团队照片3', color: '#10b981' }
+      ]}
+      autoSlideInterval={5000}
+      transitionType="fade"
+      height={400}
+      glowEffect={true}
+      glowIntensity={8}
+    />
+  </div>
+  <p className='text-center text-sm text-stone-400 dark:text-stone-500 mt-2'>杭星辰车友风采</p>
+</div>
+
+<div className="animated-border p-6 my-8">
+  <Balancer>
+    <AnimatedText animation="fade">
+      各位星瑞车主好！
+
+      杭星辰官方微信公众号已经正式上线啦！🚗
+
+      还未加入车友群的朋友，可以通过公众号留言申请入群。
+    </AnimatedText>
+  </Balancer>
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-12">
+  <Card title="我们的使命" icon="🚀">
+    <AnimatedText animation="pulse">
+      我们建立车友群的主要目的是：
+      <ul className="space-y-2 mt-2">
+        <li className="flex items-center">
+          <Badge color="blue">探索</Badge>
+          <span className="ml-1">组织车友们一起遛车</span>
+        </li>
+        <li className="flex items-center">
+          <Badge color="green">交流</Badge>
+          <span className="ml-1">分享用车心得和保养经验</span>
+        </li>
+        <li className="flex items-center">
+          <Badge color="red">欢聚</Badge>
+          <span className="ml-1">不定期举办车友聚会活动</span>
+        </li>
+      </ul>
+    </AnimatedText>
+  </Card>
+  
+  <Card title="加入须知" icon="📝">
+    <AnimatedText animation="fade">
+      <Callout type="info">
+        为便于管理，入群后请将群昵称修改为：
+        <div className="font-bold text-center my-2 text-lg">
+          车牌+车型+颜色+昵称
+        </div>
+      </Callout>
+    </AnimatedText>
+  </Card>
+</div>
+
+<Hr className="my-12" />
+
+<div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 p-8 rounded-xl my-12">
+  <h2 className="text-2xl font-bold mb-4 text-center">关于群主</h2>
+
+  <Balancer>
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-white dark:border-stone-800 shadow-xl flex items-center justify-center">
+        <Image 
+          src={owner1} 
+          alt="Sylvan - 杭星辰创始人" 
+          width={256} 
+          height={256}
+          className="object-cover w-full h-full"
+        />
+      </div>
+      
+      <div className="flex-1">
+        <p className="text-lg">
+          杭星辰创始人 <span className="font-bold text-xl">Sylvan</span> 是一位资深星瑞车主，热爱汽车文化，致力于打造温暖有爱的车友社区。作为一名车友群组织者，他希望能为大家提供一个<span className="font-bold">交流、分享、互助</span>的平台。
+        </p>
+        
+        <div className="flex flex-wrap gap-4 mt-4">
+          <Badge color="blue">🎵 音乐爱好者</Badge>
+          <Badge color="purple">🪩 DJ</Badge>
+          <Badge color="pink">🎤 说唱</Badge>
+        </div>
+        
+        <p className="mt-4">
+          在Sylvan的带领下，杭星辰将致力于营造<Red>友善、互助、欢乐</Red>的车友氛围，让每位车主都能在这里找到家的温暖。
+        </p>
+      </div>
+    </div>
+  </Balancer>
+</div>
+
+<h2 className="text-2xl font-bold mb-6 text-center">
+  <AnimatedText animation="pulse">
+    认识我们的团队
+  </AnimatedText>
+</h2>
+
+<Players />
+
+<div className="text-center mt-12">
+  <AnimatedText animation="bounce">
+    <Link href="/join-us">
+      <Button>加入我们</Button>
+    </Link>
+  </AnimatedText>
+  <p className="mt-4 text-stone-500 dark:text-stone-400">成为杭星辰大家庭的一员</p>
+</div> 

@@ -1,6 +1,5 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
 import {
   TbAccessible,
   TbArmchair2,
@@ -15,18 +14,12 @@ import {
 export function Benefits() {
   return (
     <section className='pb-2'>
-      {/* <h2>{t('Title')}</h2> */}
+      {/* <h2>优势</h2> */}
       {/* <ul>
-        {t.raw('Content').map((benefit, i) => {
-          const Icon = icons[i]
-          return (
-            <li key={i}>
-              <Icon className='mr-1 inline-block h-5 w-5' />
-              <strong>{benefit.split(':')[0]}:</strong>
-              {benefit.split(':')[1]}
-            </li>
-          )
-        })}
+        <li>
+          <TbMoodSmile className='mr-1 inline-block h-5 w-5' />
+          <strong>友好社区:</strong> 我们欢迎所有技能水平的开发者
+        </li>
       </ul> */}
     </section>
   )

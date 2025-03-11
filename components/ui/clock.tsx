@@ -1,12 +1,10 @@
 'use client'
 
-import { useFormatter } from 'next-intl'
 import React from 'react'
 
 export function Clock() {
   const [time, setTime] = React.useState(new Date())
   const [mounted, setMounted] = React.useState(false)
-  const { dateTime: formatDateTime } = useFormatter()
 
   React.useEffect(() => {
     setMounted(true)
@@ -26,16 +24,18 @@ export function Clock() {
     return null
   }
 
+  const formatter = new Intl.DateTimeFormat('zh-CN', {
+    timeZone: 'Asia/Shanghai',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    weekday: 'short',
+  })
+
   return (
     <div className='flex h-8 items-center px-2 py-1'>
       <span className='select-none text-xs text-stone-400 dark:text-stone-600'>
-        {formatDateTime(time, {
-          timeZone: 'Asia/Shanghai',
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric',
-          weekday: 'short',
-        })}
+        {formatter.format(time)}
       </span>
     </div>
   )

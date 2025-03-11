@@ -1,7 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTranslations } from 'next-intl'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { TbMail } from 'react-icons/tb'
@@ -17,7 +16,6 @@ const contactFormSchema = z.object({
 type ContactFormSchema = z.infer<typeof contactFormSchema>
 
 export function ContactForm() {
-  const t = useTranslations('Contact')
   const {
     register,
     handleSubmit,
@@ -34,17 +32,17 @@ export function ContactForm() {
           body: JSON.stringify({ data }),
         })
         if (response.ok) {
-          toast.success(t('Form.Submit.Success'), { duration: 5000 })
+          toast.success('消息发送成功！我们会尽快回复您。', { duration: 5000 })
           reset()
         } else {
-          toast.error(t('Form.Submit.Error'))
+          toast.error('发送失败，请稍后再试。')
         }
         // eslint-disable-next-line unused-imports/no-unused-vars
       } catch (_) {
-        toast.error(t('Form.Submit.Error'))
+        toast.error('发送失败，请稍后再试。')
       }
     },
-    [t, reset],
+    [reset],
   )
 
   return (
@@ -52,45 +50,42 @@ export function ContactForm() {
       <Form.Container>
         <header>
           <p className='flex flex-col text-sm tracking-tight text-stone-500 md:flex-row md:items-center'>
-            {t.rich('Tips', {
-              email: (text) => (
-                <span className='inline-flex items-center space-x-0.5 text-stone-600 dark:text-stone-300 md:mx-1'>
-                  <TbMail className='h-4 w-4' />
-                  <a
-                    href='mailto:contact@zolplay.com'
-                    className='text-stone-600 no-underline hover:underline dark:text-stone-300'
-                  >
-                    {text}
-                  </a>
-                </span>
-              ),
-            })}
+            如果您有任何问题，也可以直接发送邮件至
+            <span className='inline-flex items-center space-x-0.5 text-stone-600 dark:text-stone-300 md:mx-1'>
+              <TbMail className='h-4 w-4' />
+              <a
+                href='mailto:contact@zolplay.com'
+                className='text-stone-600 no-underline hover:underline dark:text-stone-300'
+              >
+                contact@zolplay.com
+              </a>
+            </span>
           </p>
         </header>
 
         <Form.Section>
           <Form.FieldGroup name='name'>
-            <Form.Label>{t('Form.FullName.Label')}</Form.Label>
-            <Form.Input placeholder={t('Form.FullName.Placeholder')} {...register('name')} />
+            <Form.Label>姓名</Form.Label>
+            <Form.Input placeholder='请输入您的姓名' {...register('name')} />
             <Form.Error message={errors.name?.message} />
           </Form.FieldGroup>
           <Form.FieldGroup name='email'>
-            <Form.Label>{t('Form.Email.Label')}</Form.Label>
+            <Form.Label>邮箱</Form.Label>
             <Form.Input
               type='email'
               autoComplete='on'
-              placeholder={t('Form.Email.Placeholder')}
+              placeholder='请输入您的邮箱地址'
               {...register('email')}
             />
             <Form.Error message={errors.email?.message} />
           </Form.FieldGroup>
 
           <Form.FieldGroup name='message' size='lg'>
-            <Form.Label>{t('Form.Message.Label')}</Form.Label>
+            <Form.Label>留言</Form.Label>
             <Form.TextArea
               defaultValue=''
               rows={3}
-              placeholder={t('Form.Message.Placeholder')}
+              placeholder='请输入您的留言内容'
               {...register('message')}
             />
             <Form.Error message={errors.message?.message} />
@@ -99,7 +94,7 @@ export function ContactForm() {
       </Form.Container>
 
       <Form.Footer>
-        <Form.SubmitButton>{t(isSubmitting ? 'Form.Submit.Sending' : 'Form.Submit.Idle')}</Form.SubmitButton>
+        <Form.SubmitButton>{isSubmitting ? '发送中...' : '发送留言'}</Form.SubmitButton>
       </Form.Footer>
     </Form.Root>
   )
