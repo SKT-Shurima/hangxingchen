@@ -13,7 +13,8 @@ const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx', 'js', 'jsx'],
   output: 'export',
   distDir: 'dist',
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  basePath: '/hangxingchen',
+  assetPrefix: '/hangxingchen',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -26,7 +27,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
 }
 
 const withMDX = createMDX({
