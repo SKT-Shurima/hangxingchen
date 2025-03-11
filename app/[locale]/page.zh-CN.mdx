@@ -1,0 +1,67 @@
+import party1 from '~/public/party/party1.jpg'
+import party2 from '~/public/party/party2.jpg'
+import party3 from '~/public/party/party3.jpg'
+import party4 from '~/public/party/party4.jpg'
+import { Carousel } from '~/components/ui/carousel'
+
+<div className="text-center">
+  <AnimatedText animation="fade">
+    <h1><Gradient>欢迎来到杭星辰</Gradient></h1>
+  </AnimatedText>
+</div>
+
+<div className="text-center mb-6 text-lg text-stone-600 dark:text-stone-400 italic">
+  循此苦旅 以达星辰
+</div>
+
+<Card title="关于我们" icon="🌟">
+  <Gradient>杭星辰</Gradient>是一个充满<Red>热情与创意</Red> 🚗 的星瑞车主社区，我们汇聚了众多<Blue>热爱生活、热爱驾驶</Blue>的车友。这里不仅是一个普通的车友群，更是一个<b>温暖的大家庭</b> 💫，我们一起<Green>自驾游</Green>、<Pink>摄影分享</Pink>、<Blue>技术交流</Blue>，共同打造一个充满<Red>欢乐与友谊</Red>的精彩车生活。
+</Card>
+
+<div className="flex flex-col justify-center items-center mt-6">
+  <div className="w-full max-w-[700px] h-[400px]">
+    <Carousel 
+      images={[
+        { src: party1, alt: '杭星辰车友聚会照片1', color: '#f5a623' },
+        { src: party2, alt: '杭星辰车友聚会照片2', color: '#ADD8E6' },
+        { src: party3, alt: '杭星辰车友聚会照片3', color: '#ADD8E6' },
+        { src: party4, alt: '杭星辰车友聚会照片4', color: '#f5a623' }
+      ]}
+      autoSlideInterval={5000}
+      transitionType="fade"
+      height={400}
+      glowEffect={true}
+      glowIntensity={8}
+    />
+  </div>
+  <p className='text-center text-sm text-stone-400 dark:text-stone-500 mt-2'>精彩车友聚会瞬间</p>
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+  <Card title="我们的活动" icon="🚗">
+    <ul className="space-y-2">
+      <li><Badge color="blue">不定期聚会</Badge> 不定期组织线下车友聚会，分享驾驶体验</li>
+      <li><Badge color="green">自驾游</Badge> 探索美丽风景，享受驾驶乐趣</li>
+      <li><Badge color="red">技术交流</Badge> 分享车辆保养和改装经验</li>
+    </ul>
+  </Card>
+  
+  <Card title="加入我们" icon="🤝">
+    <Callout type="info">
+      欢迎所有星瑞车主加入我们的大家庭！扫描下方二维码或搜索微信群"杭星辰"即可加入。
+    </Callout>
+    <div className="flex justify-center mt-4">
+      <AnimatedText animation="pulse">
+        <Badge color="purple">期待您的加入！</Badge>
+      </AnimatedText>
+    </div>
+  </Card>
+</div>
+
+<Callout type="success">
+  <div className="text-center">
+    <AnimatedText animation="bounce">
+      一起驾驶，一起分享，一起成长！
+    </AnimatedText>
+  </div>
+</Callout>

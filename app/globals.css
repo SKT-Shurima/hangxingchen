@@ -1,0 +1,166 @@
+* {
+  @apply antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  --font-sans: var(--font-sans-en);
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: theme('colors.stone.700');
+  color: theme('colors.stone.50');
+}
+
+.dark ::selection {
+  background: theme('colors.stone.300');
+  color: theme('colors.stone.900');
+}
+
+.mask-t {
+  background: linear-gradient(to top, transparent, #fefefe);
+  -webkit-mask-image: linear-gradient(to bottom, #fefefe 24%, transparent);
+}
+
+.dark .mask-t {
+  background: linear-gradient(to top, transparent, #1a1a1a);
+  -webkit-mask-image: linear-gradient(to bottom, #1a1a1a 24%, transparent);
+}
+
+.mask-b {
+  background: linear-gradient(to bottom, transparent, #fefefe);
+  -webkit-mask-image: linear-gradient(to top, #fefefe 24%, transparent);
+}
+
+.dark .mask-b {
+  background: linear-gradient(to bottom, transparent, #1a1a1a);
+  -webkit-mask-image: linear-gradient(to top, #1a1a1a 24%, transparent);
+}
+
+.mask-l {
+  background: linear-gradient(to left, transparent, var(--mask-color));
+  -webkit-mask-image: linear-gradient(
+    to right,
+    var(--mask-color) 26%,
+    transparent
+  );
+}
+
+.mask-r {
+  background: linear-gradient(to right, transparent, var(--mask-color));
+  -webkit-mask-image: linear-gradient(
+    to left,
+    var(--mask-color) 26%,
+    transparent
+  );
+}
+
+.frosted-noise::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/noise.png);
+  background-repeat: repeat;
+  background-size: 182px;
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Toast */
+[data-sonner-toast],
+[data-sonner-toast] [data-close-button] {
+  @apply font-sans;
+  background-color: theme('colors.stone.100') !important;
+  color: theme('colors.stone.800') !important;
+  border-color: theme('colors.stone.200') !important;
+}
+
+.dark [data-sonner-toast],
+.dark [data-sonner-toast] [data-close-button] {
+  background-color: theme('colors.stone.800') !important;
+  color: theme('colors.stone.300') !important;
+  border-color: theme('colors.stone.700') !important;
+}
+
+.animated-border {
+  position: relative;
+  z-index: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    #ff0080, 
+    #ff8c00, 
+    #ffff00, 
+    #00ff00, 
+    #00ffff, 
+    #0080ff, 
+    #8000ff, 
+    #ff0080,
+    #ff0080
+  );
+  z-index: -1;
+  animation: rotate 4s linear infinite;
+  filter: blur(0.4rem);
+  opacity: 0.8;
+}
+
+.animated-border::after {
+  content: '';
+  position: absolute;
+  inset: 0.25rem;
+  background: white;
+  border-radius: 0.3rem;
+  z-index: -1;
+}
+
+.dark .animated-border::after {
+  background: #1f2937; /* dark:bg-gray-800 equivalent */
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Marquee styles for seamless looping */
+.marquee-container {
+  display: inline-flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-container > div {
+  flex-shrink: 0;
+  min-width: 100%;
+}
+
