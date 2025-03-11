@@ -12,6 +12,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write
+  deployments: write
 
 # 只允许一个并发部署，跳过正在运行和最新队列之间的运行队列
 # 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
@@ -62,6 +64,7 @@ jobs:
           # 配置静态输出目录为 Next.js 的输出目录
           static_site_generator: next
           enablement: true
+          token: ${{ secrets.PAGES_PAT }}
 
       - name: Build with Next.js
         run: pnpm build
@@ -85,3 +88,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.PAGES_PAT }}
