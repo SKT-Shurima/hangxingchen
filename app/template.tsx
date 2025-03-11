@@ -8,4 +8,4 @@ export default function RootTemplate({ children }) {
       {children}
     </motion.div>
   )
-} 
+}

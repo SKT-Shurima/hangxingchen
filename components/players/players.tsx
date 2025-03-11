@@ -1,8 +1,8 @@
 'use client'
 
-import { ZolplayerCard } from './player-card'
-import { fetchProfiles } from './fetch-profiles'
 import { useEffect, useState } from 'react'
+import { fetchProfiles } from './fetch-profiles'
+import { ZolplayerCard } from './player-card'
 import type { ProfileData } from './fetch-profiles'
 
 export function Players() {
@@ -36,21 +36,13 @@ export function Players() {
           <div className='marquee-container'>
             <div className='flex items-center space-x-6 py-6 animate-marquee'>
               {profiles.map((profile) => (
-                <ZolplayerCard 
-                  key={`player-${profile.id}`} 
-                  base64Image={profile.base64} 
-                  size={100}
-                />
+                <ZolplayerCard key={`player-${profile.id}`} base64Image={profile.base64} size={100} />
               ))}
             </div>
             {/* Duplicate the profiles to ensure continuous loop with no gap */}
             <div className='flex items-center space-x-6 py-6 animate-marquee'>
               {profiles.map((profile) => (
-                <ZolplayerCard 
-                  key={`player-dup-${profile.id}`} 
-                  base64Image={profile.base64} 
-                  size={100}
-                />
+                <ZolplayerCard key={`player-dup-${profile.id}`} base64Image={profile.base64} size={100} />
               ))}
             </div>
           </div>

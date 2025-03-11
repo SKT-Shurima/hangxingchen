@@ -1,16 +1,5 @@
 'use client'
 
-import {
-  TbAccessible,
-  TbArmchair2,
-  TbArrowBigUpLine,
-  TbCash,
-  TbDeviceGamepad,
-  TbMoodSmile,
-  TbTiltShift,
-  TbTools,
-} from 'react-icons/tb'
-
 export function Benefits() {
   return (
     <section className='pb-2'>

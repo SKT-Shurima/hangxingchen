@@ -5,4 +5,4 @@ export default function NotFoundPage() {
       <p>您访问的页面不存在或已被移除。</p>
     </div>
   )
-} 
+}

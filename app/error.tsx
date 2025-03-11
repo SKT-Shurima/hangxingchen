@@ -7,4 +7,4 @@ export default function RootError() {
       <p>很抱歉，页面加载时发生了错误。请刷新页面或稍后再试。</p>
     </>
   )
-} 
+}
