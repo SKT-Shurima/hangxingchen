@@ -6,9 +6,9 @@ export const routing = defineRouting({
 
   // Used when no locale matches
   defaultLocale: 'zh-CN',
-  
+
   // Set to 'never' to disable locale prefixes in URLs
-  localePrefix: 'never'
+  localePrefix: 'never',
 })
 
 export type Locale = (typeof routing.locales)[number]

@@ -1,5 +1,4 @@
 import type { StaticImageData } from 'next/image'
-import Image from 'next/image'
 
 interface ZolplayerCardProps {
   avatarUrl?: StaticImageData
@@ -13,8 +12,8 @@ export function ZolplayerCard({
   size = 100, // Default size of 100px
 }: ZolplayerCardProps) {
   return (
-    <div className='flex justify-center items-center p-2'>
-      <div className='transform transition-transform duration-300 hover:scale-110 active:scale-95 touch-manipulation'>
+    <div className='flex items-center justify-center p-2'>
+      <div className='transform touch-manipulation transition-transform duration-300 hover:scale-110 active:scale-95'>
         {base64Image ? (
           <span
             style={{
@@ -27,7 +26,7 @@ export function ZolplayerCard({
               height: `${size}px`,
               maxWidth: '100%',
             }}
-            className='rounded-full border-2 border-stone-200 dark:border-stone-700 shadow-md'
+            className='rounded-full border-2 border-stone-200 shadow-md dark:border-stone-700'
             role='img'
             aria-label='Player avatar'
           />
@@ -43,7 +42,7 @@ export function ZolplayerCard({
               height: `${size}px`,
               maxWidth: '100%',
             }}
-            className='rounded-full border-2 border-stone-200 dark:border-stone-700 shadow-md'
+            className='rounded-full border-2 border-stone-200 shadow-md dark:border-stone-700'
             role='img'
             aria-label='Player avatar'
           />

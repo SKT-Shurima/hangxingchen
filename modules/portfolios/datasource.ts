@@ -15,6 +15,4 @@ export interface Portfolio {
   website: string
 }
 
-export const PORTFOLIOS: Portfolio[] = [
-  
-]
+export const PORTFOLIOS: Portfolio[] = []

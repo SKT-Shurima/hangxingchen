@@ -43,20 +43,12 @@ body {
 
 .mask-l {
   background: linear-gradient(to left, transparent, var(--mask-color));
-  -webkit-mask-image: linear-gradient(
-    to right,
-    var(--mask-color) 26%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(to right, var(--mask-color) 26%, transparent);
 }
 
 .mask-r {
   background: linear-gradient(to right, transparent, var(--mask-color));
-  -webkit-mask-image: linear-gradient(
-    to left,
-    var(--mask-color) 26%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(to left, var(--mask-color) 26%, transparent);
 }
 
 .frosted-noise::before {
@@ -103,17 +95,7 @@ body {
   left: -150%;
   width: 400%;
   height: 400%;
-  background: conic-gradient(
-    #ff0080, 
-    #ff8c00, 
-    #ffff00, 
-    #00ff00, 
-    #00ffff, 
-    #0080ff, 
-    #8000ff, 
-    #ff0080,
-    #ff0080
-  );
+  background: conic-gradient(#ff0080, #ff8c00, #ffff00, #00ff00, #00ffff, #0080ff, #8000ff, #ff0080, #ff0080);
   z-index: -1;
   animation: rotate 4s linear infinite;
   filter: blur(0.4rem);
@@ -162,4 +144,3 @@ body {
   flex-shrink: 0;
   min-width: 100%;
 }
-

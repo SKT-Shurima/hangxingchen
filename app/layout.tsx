@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" suppressHydrationWarning className={`font-sans ${fontSansEn.variable}`}>
+    <html lang='zh-CN' suppressHydrationWarning className={`font-sans ${fontSansEn.variable}`}>
       <head>
         <script
           // eslint-disable-next-line react-dom/no-dangerously-set-innerhtml

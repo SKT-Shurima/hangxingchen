@@ -71,23 +71,13 @@ export function ContactForm() {
           </Form.FieldGroup>
           <Form.FieldGroup name='email'>
             <Form.Label>邮箱</Form.Label>
-            <Form.Input
-              type='email'
-              autoComplete='on'
-              placeholder='请输入您的邮箱地址'
-              {...register('email')}
-            />
+            <Form.Input type='email' autoComplete='on' placeholder='请输入您的邮箱地址' {...register('email')} />
             <Form.Error message={errors.email?.message} />
           </Form.FieldGroup>
 
           <Form.FieldGroup name='message' size='lg'>
             <Form.Label>留言</Form.Label>
-            <Form.TextArea
-              defaultValue=''
-              rows={3}
-              placeholder='请输入您的留言内容'
-              {...register('message')}
-            />
+            <Form.TextArea defaultValue='' rows={3} placeholder='请输入您的留言内容' {...register('message')} />
             <Form.Error message={errors.message?.message} />
           </Form.FieldGroup>
         </Form.Section>

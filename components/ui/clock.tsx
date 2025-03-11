@@ -34,9 +34,7 @@ export function Clock() {
 
   return (
     <div className='flex h-8 items-center px-2 py-1'>
-      <span className='select-none text-xs text-stone-400 dark:text-stone-600'>
-        {formatter.format(time)}
-      </span>
+      <span className='select-none text-xs text-stone-400 dark:text-stone-600'>{formatter.format(time)}</span>
     </div>
   )
 }

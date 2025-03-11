@@ -61,7 +61,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           'bg-green-50 border-green-200 text-green-800 dark:bg-green-950 dark:border-green-800 dark:text-green-200',
       }
 
-      return <div className={`p-4 my-4 border-l-4 rounded-r-lg ${styles[type]}`}>{children}</div>
+      return <div className={`my-4 rounded-r-lg border-l-4 p-4 ${styles[type]}`}>{children}</div>
     },
     AnimatedText: ({
       children,
@@ -81,18 +81,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     CodeBlock: ({ children, language }: { children: ReactNode; language?: string }) => (
       <div className='relative my-6 overflow-hidden rounded-lg'>
-        <div className='absolute top-0 right-0 px-4 py-1 text-xs font-semibold text-gray-100 bg-gray-800 rounded-bl-lg'>
+        <div className='absolute right-0 top-0 rounded-bl-lg bg-gray-800 px-4 py-1 text-xs font-semibold text-gray-100'>
           {language || 'code'}
         </div>
-        <pre className='p-4 pt-8 overflow-x-auto text-sm bg-gray-900 text-gray-100 dark:bg-gray-950'>
+        <pre className='overflow-x-auto bg-gray-900 p-4 pt-8 text-sm text-gray-100 dark:bg-gray-950'>
           <code>{children}</code>
         </pre>
       </div>
     ),
     Card: ({ children, title, icon }: { children: ReactNode; title?: string; icon?: string }) => (
-      <div className='relative p-6 my-4 transition-all duration-300 shadow-sm hover:shadow-md animated-border'>
+      <div className='animated-border relative my-4 p-6 shadow-sm transition-all duration-300 hover:shadow-md'>
         {title && (
-          <div className='flex items-center mb-4 gap-2'>
+          <div className='mb-4 flex items-center gap-2'>
             {icon && <span className='flex items-center justify-center text-xl leading-none'>{icon}</span>}
             <h3 className='text-lg font-semibold leading-none'>{title}</h3>
           </div>
@@ -117,7 +117,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       }
 
       return (
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[color]}`}>
+        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${colors[color]}`}>
           {children}
         </span>
       )
@@ -136,7 +136,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         pink: 'bg-pink-200 dark:bg-pink-800',
       }
 
-      return <span className={`px-1 rounded ${colors[color]}`}>{children}</span>
+      return <span className={`rounded px-1 ${colors[color]}`}>{children}</span>
     },
     Image: NextImage,
   }

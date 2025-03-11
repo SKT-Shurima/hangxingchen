@@ -92,7 +92,7 @@ function Input({ ref, className, id, name, type, ...rest }: ComponentProps<'inpu
     <input
       className={clsxm(
         [
-          'block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 dark:ring-stone-700 dark:placeholder:text-stone-600 dark:focus:ring-stone-500 text-sm sm:leading-6 ',
+          'block w-full rounded-md border-0 bg-transparent py-1.5 text-sm shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 dark:ring-stone-700 dark:placeholder:text-stone-600 dark:focus:ring-stone-500 sm:leading-6',
         ],
         className,
       )}

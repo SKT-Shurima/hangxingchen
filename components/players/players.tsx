@@ -1,9 +1,9 @@
 'use client'
 
+import type { ProfileData } from './fetch-profiles'
 import { useEffect, useState } from 'react'
 import { fetchProfiles } from './fetch-profiles'
 import { ZolplayerCard } from './player-card'
-import type { ProfileData } from './fetch-profiles'
 
 export function Players() {
   const [profiles, setProfiles] = useState<ProfileData[]>([])
@@ -27,20 +27,20 @@ export function Players() {
   return (
     <>
       <h2>认识我们的团队</h2>
-      <div className='overflow-hidden relative h-[150px]'>
+      <div className='relative h-[150px] overflow-hidden'>
         {loading ? (
           <div className='py-6 text-center'>正在加载团队成员...</div>
         ) : profiles.length === 0 ? (
           <div className='py-6 text-center'>未找到团队成员</div>
         ) : (
           <div className='marquee-container'>
-            <div className='flex items-center space-x-6 py-6 animate-marquee'>
+            <div className='flex animate-marquee items-center space-x-6 py-6'>
               {profiles.map((profile) => (
                 <ZolplayerCard key={`player-${profile.id}`} base64Image={profile.base64} size={100} />
               ))}
             </div>
             {/* Duplicate the profiles to ensure continuous loop with no gap */}
-            <div className='flex items-center space-x-6 py-6 animate-marquee'>
+            <div className='flex animate-marquee items-center space-x-6 py-6'>
               {profiles.map((profile) => (
                 <ZolplayerCard key={`player-dup-${profile.id}`} base64Image={profile.base64} size={100} />
               ))}

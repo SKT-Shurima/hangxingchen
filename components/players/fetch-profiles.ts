@@ -9,4 +9,4 @@ export interface ProfileData {
 export async function fetchProfiles(): Promise<ProfileData[]> {
   // 直接返回导入的数据
   return profileData
-} 
+}

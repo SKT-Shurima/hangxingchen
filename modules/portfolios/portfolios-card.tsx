@@ -37,7 +37,7 @@ export function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
           <h2 className='mt-4'>
             <Link
               href={makePortfolioLink(portfolio)}
-              className='not-prose text-lg md:text-xl lg:text-2xl hover:underline'
+              className='not-prose text-lg hover:underline md:text-xl lg:text-2xl'
               style={{
                 color: palette.foreground,
               }}

@@ -6,7 +6,28 @@
     "source.organizeImports": "never"
   },
 
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   "eslint.runtime": "node",
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
 
   "eslint.validate": [
     "javascript",
@@ -16,6 +37,7 @@
     "vue",
     "html",
     "markdown",
+    "mdx",
     "json",
     "jsonc",
     "yaml",
