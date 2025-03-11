@@ -58,6 +58,7 @@ jobs:
         with:
           # 配置静态输出目录为 Next.js 的输出目录
           static_site_generator: next
+          enablement: true
 
       - name: Build with Next.js
         run: pnpm build
