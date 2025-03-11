@@ -4,7 +4,7 @@
 import { usePathname, useSearchParams } from 'next/navigation'
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 const KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY
 if (typeof window !== 'undefined' && KEY) {
@@ -33,5 +33,7 @@ export function PostHogPageview() {
 }
 
 export function PHProvider({ children }: { children: React.ReactNode }) {
-  return <PostHogProvider client={posthog}>{children}</PostHogProvider>
+  // Use useMemo to prevent creating a new object on every render
+  const memoizedClient = useMemo(() => posthog, []);
+  return <PostHogProvider client={memoizedClient}>{children}</PostHogProvider>
 }
